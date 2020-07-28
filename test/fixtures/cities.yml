@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  : MyString
+  state: MyString
+  : MyString
+  country: MyString
+  : MyString
+  lat: MyString
+  : MyString
+  long: MyString
+  : MyString
+
+two:
+  name: MyString
+  : MyString
+  state: MyString
+  : MyString
+  country: MyString
+  : MyString
+  lat: MyString
+  : MyString
+  long: MyString
+  : MyString
