@@ -5,7 +5,6 @@ class UsersController < ApplicationController
  end
 
  def create
-
   user = User.create!(user_params)
   payload = { user_id: user.id }
   token = JWT.encode(payload, 'tweak', 'HS256')
@@ -13,6 +12,8 @@ class UsersController < ApplicationController
  end 
 
  def show
+  
+  byebug
  end
 
  def update
