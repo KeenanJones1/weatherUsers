@@ -22,7 +22,6 @@ class UsersController < ApplicationController
 
  private 
   def user_params
-    #     params.require(:habit).permit(:title, :difficulty, :note, :type, :user_id)
     params.require(:user).permit(:full_name, :username, :password)
   end
 
