@@ -1,30 +1,31 @@
 class AuthController < ApplicationController
 
  def create 
-  user = User.find_by(username: params["username"])
-  # byebug
-    if user && user.authenticate(params[:password])
-      payload = { user_id: user.id }
-      token = JWT.encode(payload, 'tweak', 'HS256')
-      render json: {token: token}
+  auth_object = Authentication.new(login_params)
+    if auth_object.authenticate
+      render json: {
+        message: "Login successful!", token: auth_object.generate_token }, status: :ok
     else
-      render json: { error: 'User not found' }, status: 404
+      render json: {
+        message: "Incorrect username/password combination"}, status: :unauthorized
     end
  end
 
 
  def show
-  token = request.headers[:Authorization].split(' ')[1]
-  decoded_token = JWT.decode(token, 'tweak', true, algorithm: 'HS256')
-  user_id = decoded_token[0]['user_id']
-  user = User.find(user_id)
-  if user 
-   # make serializer
-   # byebug
+  authorization_object = Authorization.new(request)
+  current_user = authorization_object.current_user
+  user = User.find(current_user)
+  if current_user 
    render json: UserSerializer.new(user).to_serialized_json
  else
    render json: {error: 'Invalid Token'}, status: 401
   end
  end
+
+ private 
+ def login_params
+  params.require(:auth).permit(:username, :password)
+end
 
 end
