@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users, only: [:index, :show, :update]
-
+  resources :user_cities
 
 
   post 'signup', to: 'users#create', as: '/signup'

@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_233735) do
+ActiveRecord::Schema.define(version: 2020_08_28_030759) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
-    t.string "state"
     t.string "country"
-    t.decimal "latitude", precision: 10, scale: 6
-    t.decimal "longitude", precision: 10, scale: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "key"
   end
 
   create_table "user_cities", force: :cascade do |t|
