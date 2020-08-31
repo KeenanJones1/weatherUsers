@@ -8,7 +8,7 @@ class UserSerializer
 
  def to_serialized_json
   @user.to_json(
-   :include => {:cities => {:only => [:id, :name, :state, :country, :latitude, :longitude ]}},
+   :include => {:cities => {:only => [:name, :key, :country]}},
    :except => [:password_digest, :updated_at, :created_at])
  end
 
