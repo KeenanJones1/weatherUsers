@@ -3,6 +3,7 @@ class JsonWebToken
 
  def self.encode(payload)
   # payload[:exp] = exp.to_i
+  
   JWT.encode(payload, JWT_SECRET)
 end
 

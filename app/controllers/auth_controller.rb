@@ -2,9 +2,10 @@ class AuthController < ApplicationController
 
  def create 
   auth_object = Authentication.new(login_params)
+  user = User.find_by(username: params['username'])
     if auth_object.authenticate
       render json: {
-        message: "Login successful!", token: auth_object.generate_token }, status: :ok
+        message: "Login successful!", token: auth_object.generate_token, username: user.username, full_name: user.full_name, cities: user.cities }, status: :ok
     else
       render json: {
         message: "Incorrect username/password combination"}, status: :unauthorized
