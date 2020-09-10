@@ -3,4 +3,8 @@ class User < ApplicationRecord
  has_secure_password
  has_many :user_cities
  has_many :cities, through: :user_cities
+
+ def method_name
+  
+ end
 end
